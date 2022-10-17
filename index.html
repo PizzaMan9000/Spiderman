@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    
+    <title>Spiderman!</title>
+    <!-- link p5.js and its addons like p5.dom.js or p5.sound.js -->
+    <script src="lib/p5.min.js" type="text/javascript"></script>
+    <!-- link p5.play.js -->
+    <script src="lib/p5.play.js" type="text/javascript"></script>
+    <!-- link p5.dom.js -->
+    <script src="lib/p5.dom.js" type="text/javascript"></script>
+
+    <!-- link your javascript sketch -->
+    <script src="scripts/sprites.js" type="text/javascript"></script>
+
+    <script src="main.js" type="text/javascript"></script>
+
+    <script src="characters_environment.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
+
+  </head>
+  <body>
+    <center>
+      <div class = "btn btn-info" id = "headerDiv">
+        <h1 class = "heading1">Spiderman!</h1>
+        <h2 class = "items"><a href = "#aboutMe">About me</a></h2>
+        <h2 class = "items"><a href = "#pics">Pictures of me</a></h2>
+        <h2 class = "items"><a href = "#game_console">Games</a></h2>
+        <button id = "instructions" data-toggle = "modal" class = "btn btn-danger" data-target = "#instructionsModal">Instructions</button>
+      </div>
+
+      <br>
+      <br>
+      <div id = "aboutMe">
+        <h3 id = "aboutMeText">
+          Hello, I am Spiderman! I think I am the best superhero because I not only saved people in a different galaxy but at our planet too! Thats where the name "Friendly neighbourhood spiderman" comes from
+        </h3>
+      </div>
+      <br>
+      <br>
+      <div id = "pics">
+        <img src = "data:image/jpeg;base64,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" class = "imgpics">
+        <img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8bCxc-siJJXkjTEcd4l4P98iCq0UXEi0buw&usqp=CAU" class = "imgpics">
+      </div>
+      <br>
+      <br>
+      <h3 id = "aboutMeText">
+        I also like some games too! I have created my Spiderman mario game for you all to try, the instructions are at the nav bar and keep your webcam on, warning: keep your volume low
+      </h3>
+
+      <button id = "startButton" class = "btn btn-success" onclick = "startGame()">Start Game</button>
+      <br>
+      <h3 id = "status" class = "btn btn-warning"></h3>
+
+      <div id = "canvas"></div>
+      <div id = "game_console"></div>
+      
+      <h4>
+        Made by Advait Singh
+      </h4>
+
+      <div id = "instructionsModal" class = "modal fade">
+        <div class = "modal-dialog">
+          <div class = "modal-content">
+            <div class = "modal-header">
+              <button class = "close" data-dismiss = "modal">&times;</button>
+              <h4>Instructions</h4>
+            </div>
+
+            <div class = "modal-body">
+              <img src = "jump.png" class = "image-responsive instructionImage">
+              <img src = "left.png" class = "image-responsive instructionImage">
+              <img src = "right.png" class = "image-responsive instructionImage">
+            </div>
+          </div>
+        </div>
+      </div>
+    </center>
+  </body>
+</html>
